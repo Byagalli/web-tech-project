@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #d4f1f9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #0077cc;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #005fa3;
+    }
+  </style>
+
+ 
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Student Registration</h2>
+    <form name="studentForm" onsubmit="return validateForm()">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name">
+
+      <label for="age">Age</label>
+      <input type="text" id="age" name="age">
+
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email">
+
+      <label for="grade">Grade</label>
+      <input type="text" id="grade" name="grade">
+
+      <input type="submit" value="Register">
+    </form>
+  </div>
+</body>
+
+<script>
+    function validateForm() {
+      const name = document.forms["studentForm"]["name"].value.trim();
+      const age = document.forms["studentForm"]["age"].value.trim();
+      const email = document.forms["studentForm"]["email"].value.trim();
+      const grade = document.forms["studentForm"]["grade"].value.trim();
+
+      if (name === "") {
+        alert("Name must be filled out");
+        return false;
+      }
+
+      if (age === "" || isNaN(age) || age < 18 || age > 30) {
+        alert("Please enter a valid age between 18 and 30");
+        return false;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+      }
+
+      const validGrades = ["A", "A+", "B", "B+", "C"];
+      if (!validGrades.includes(grade.toUpperCase())) {
+        alert("Please enter a valid grade (A, A+, B, B+, C)");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</html>

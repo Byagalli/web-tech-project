@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Font Size Animation</title>
+  <style>
+    #text {
+      color: red;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<p id="text">Virat Kohli</p>
+
+<script>
+  let size = 10;
+  let growing = true;
+  let colorToggle = true;
+  const textElement = document.getElementById("text");
+
+  setInterval(() => {
+    textElement.style.fontSize = size + "px";
+
+    if (colorToggle) {
+      textElement.style.color = "red";
+    } else {
+      textElement.style.color = "black";
+    }
+
+    colorToggle = !colorToggle;
+
+    if (growing) {
+      size++;
+      if (size >= 30) growing = false;
+    } else {
+      size--;
+      if (size <= 10) growing = true;
+    }
+  }, 100);
+</script>
+
+</body>
+</html>
